@@ -1,19 +1,50 @@
+import axios from "axios";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export default function Home() {
+  const [posts, setPosts] = useState([]);
+  const [marketing, setMarketing] = useState([]);
+  const [perhitungan, setPerhitungan] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/api/penjualan`);
+        setPosts(response.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const responseMarketing = await axios.get(`/api/marketing`);
+        setMarketing(responseMarketing.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const responsePerhitungan = await axios.get(`/api/perhitungan`);
+        setPerhitungan(responsePerhitungan.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <Head>
@@ -22,95 +53,159 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div
-        className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
-      >
-        <main className={styles.main}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js logo"
-            width={180}
-            height={38}
-            priority
-          />
-          <ol>
-            <li>
-              Get started by editing <code>pages/index.tsx</code>.
-            </li>
-            <li>Save and see your changes instantly.</li>
-          </ol>
 
-          <div className={styles.ctas}>
-            <a
-              className={styles.primary}
-              href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                className={styles.logo}
-                src="/vercel.svg"
-                alt="Vercel logomark"
-                width={20}
-                height={20}
-              />
-              Deploy now
-            </a>
-            <a
-              href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.secondary}
-            >
-              Read our docs
-            </a>
+      <nav className="navbar bg-body-tertiary shadow-sm">
+        <div className="container-fluid ">
+          <a
+            className="navbar-brand fw-bold d-flex justify-content-centerr"
+            href="#"
+          >
+            <div className="text-center">Herca</div>
+          </a>
+        </div>
+      </nav>
+
+      <div className="px-5 pt-5">
+        <div className="d-flex">
+          <div className="col-2 pe-3">
+            <div className="card mt-5 p-3">
+              <h4 className="text-center fw-bold">Data Marketing</h4>
+              <table className="table table-striped">
+                <thead className="bg-secondary text-white">
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {marketing.map((item: any) => (
+                    <tr>
+                      <td>{item.id}</td>
+                      <td>{item.name}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </main>
-        <footer className={styles.footer}>
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              aria-hidden
-              src="/file.svg"
-              alt="File icon"
-              width={16}
-              height={16}
-            />
-            Learn
-          </a>
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              aria-hidden
-              src="/window.svg"
-              alt="Window icon"
-              width={16}
-              height={16}
-            />
-            Examples
-          </a>
-          <a
-            href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              aria-hidden
-              src="/globe.svg"
-              alt="Globe icon"
-              width={16}
-              height={16}
-            />
-            Go to nextjs.org →
-          </a>
-        </footer>
+        </div>
+        <div className="d-flex justify-content-start flex-wrap">
+          <div className="col-6 pe-2">
+            <div className="card mt-5 p-3">
+              <h4 className="text-center fw-bold">Data Transaksi</h4>
+              {/* <div className="d-flex justify-content-end gap-2 mb-2">
+            <button className="btn btn-primary btn-sm">Pembayaran</button>
+            <Link href={`/marketing`}>
+              <button className="btn btn-info text-white btn-sm">
+                Marketing
+              </button>
+            </Link>
+          </div> */}
+              <div className="table-responsive">
+                <table className="table table-striped">
+                  <thead className="bg-secondary text-white">
+                    <tr>
+                      <th>ID</th>
+                      <th>
+                        Transaction <br /> Number
+                      </th>
+                      <th>
+                        Marketing <br /> ID
+                      </th>
+                      <th>Date</th>
+                      <th>Cargo Fee</th>
+                      <th>Total Balance</th>
+                      <th>Grand Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {posts.map((item: any) => (
+                      <tr>
+                        <td>{item.id}</td>
+                        <td>{item.transaction_number}</td>
+                        <td>{item.marketing_id}</td>
+                        <td>{item.date}</td>
+                        <td>
+                          {new Intl.NumberFormat("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                          }).format(item.cargo_fee)}
+                        </td>
+                        <td>
+                          {new Intl.NumberFormat("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                          }).format(item.total_balance)}
+                        </td>
+                        <td>
+                          {new Intl.NumberFormat("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                          }).format(item.grand_total)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div className="col-6 ps-2">
+            <div className="card mt-5 p-3">
+              <h4 className="text-center fw-bold">Data Komisi</h4>
+              {/* <div className="d-flex justify-content-end gap-2 mb-2">
+            <button className="btn btn-primary btn-sm">Pembayaran</button>
+            <Link href={`/marketing`}>
+              <button className="btn btn-info text-white btn-sm">
+                Marketing
+              </button>
+            </Link>
+          </div> */}
+              <div className="table-responsive">
+                <table className="table table-striped ">
+                  <thead className="bg-secondary text-white">
+                    <tr>
+                      <th>Marketing</th>
+                      <th>Bulan</th>
+                      <th>Omzet</th>
+                      <th>Komisi % </th>
+                      <th>Komisi Nominal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {perhitungan.map((item: any) => (
+                      <tr>
+                        <td>{item._id.marketing_name}</td>
+
+                        <td>
+                          {new Date(0, item._id.month - 1).toLocaleString(
+                            "id-ID",
+                            { month: "long" }
+                          )}
+                        </td>
+                        <td>
+                          {new Intl.NumberFormat("id-ID").format(item.Omzet)}
+                        </td>
+                        <td>{item.Komisi}</td>
+                        <td>
+                          {new Intl.NumberFormat("id-ID").format(
+                            item.komisi_nasional
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
