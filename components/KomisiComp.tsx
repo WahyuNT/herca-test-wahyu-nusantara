@@ -19,7 +19,7 @@ export default function KomisiComp() {
 
   return (
     <>
-      <div className="card mt-5 p-3 shadow-sm border-1 border">
+      <div className="card mt-5 p-3 shadow-sm border-0 border">
         <h4 className="text-center fw-bold">Data Komisi</h4>
 
         <div className="table-responsive">

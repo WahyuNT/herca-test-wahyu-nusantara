@@ -8,7 +8,7 @@ export default function KreditComp() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseMarketing = await axios.get(`/api/marketing`);
+        const responseMarketing = await axios.get("/api/marketing");
         setMarketing(responseMarketing.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -28,14 +28,23 @@ export default function KreditComp() {
     cargo_fee: 0,
     total_balance: 0,
     grand_total: 0,
+    installment_count: 0, // Jumlah cicilan
+    monthly_installment: 0, // Cicilan per bulan
   });
 
   useEffect(() => {
-    setFormData((prevData) => ({
-      ...prevData,
-      grand_total: (prevData.cargo_fee || 0) + (prevData.total_balance || 0),
-    }));
-  }, [formData.cargo_fee, formData.total_balance]);
+    setFormData((prevData) => {
+      const grandTotal = (prevData.cargo_fee || 0) + (prevData.total_balance || 0);
+      const monthlyInstallment = prevData.installment_count > 0
+        ? grandTotal / prevData.installment_count
+        : 0;
+      return {
+        ...prevData,
+        grand_total: grandTotal,
+        monthly_installment: monthlyInstallment,
+      };
+    });
+  }, [formData.cargo_fee, formData.total_balance, formData.installment_count]);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -65,6 +74,8 @@ export default function KreditComp() {
         cargo_fee: 0,
         total_balance: 0,
         grand_total: 0,
+        installment_count: 0,
+        monthly_installment: 0,
       });
     } else {
       alert("Terjadi kesalahan saat mengirim data.");
@@ -75,7 +86,7 @@ export default function KreditComp() {
     <>
       <div
         style={{ backgroundColor: "#fafafa" }}
-        className="card  border-1 border mt-5 p-3"
+        className="card border-1 border mt-5 p-3"
       >
         <h5 className="text-center">
           <strong>Pembayaran Kredit</strong>
@@ -178,6 +189,37 @@ export default function KreditComp() {
                   required
                 />
               </div>
+
+              <div className="col-4 mb-3 ps-2">
+                <label htmlFor="installment_count" className="form-label">
+                  Jumlah Cicilan
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="installment_count"
+                  name="installment_count"
+                  value={formData.installment_count}
+                  onChange={handleChange}
+                  required
+                  min="1"
+                />
+              </div>
+
+              <div className="col-4 mb-3 ps-2">
+                <label htmlFor="monthly_installment" className="form-label">
+                  Cicilan Per Bulan
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="monthly_installment"
+                  name="monthly_installment"
+                  value={new Intl.NumberFormat("id-ID").format(formData.monthly_installment || 0)}
+                  disabled
+                />
+              </div>
+
               <div className="col-4 mb-3 ps-2">
                 <label htmlFor="grand_total" className="form-label">
                   Total Keseluruhan
@@ -188,8 +230,7 @@ export default function KreditComp() {
                   id="grand_total"
                   name="grand_total"
                   value={new Intl.NumberFormat("id-ID").format(
-                    (parseFloat(formData.cargo_fee.toString()) || 0) +
-                      (parseFloat(formData.total_balance.toString()) || 0)
+                    formData.grand_total || 0
                   )}
                   required
                   disabled
@@ -205,7 +246,6 @@ export default function KreditComp() {
           </form>
         </div>
       </div>
-      ;
     </>
   );
 }

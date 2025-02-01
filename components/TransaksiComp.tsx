@@ -20,7 +20,7 @@ export default function TransaksiComp() {
 
   return (
     <>
-      <div className="card  mt-5 p-3 shadow-sm border-1 border">
+      <div className="card  mt-5 p-3 shadow-sm border-0 border">
         <h4 className="text-center fw-bold">Data Transaksi</h4>
 
         <div className="table-responsive ">
@@ -28,16 +28,14 @@ export default function TransaksiComp() {
             <thead className="bg-secondary text-white">
               <tr>
                 <th>ID</th>
-                <th>
-                  Transaction <br /> Number
-                </th>
-                <th>
-                  Marketing <br /> ID
-                </th>
+                <th>Transaction Number</th>
+                <th>Marketing ID</th>
                 <th>Date</th>
                 <th>Cargo Fee</th>
                 <th>Total Balance</th>
                 <th>Grand Total</th>
+                <th>Installment</th>
+                <th>Debt</th>
               </tr>
             </thead>
             <tbody>
@@ -70,6 +68,26 @@ export default function TransaksiComp() {
                       minimumFractionDigits: 0,
                       maximumFractionDigits: 0,
                     }).format(item.grand_total)}
+                  </td>
+                  <td className="text-center">
+
+                  {item.installment_count === 0 ||
+                    item.installment_count === null ||
+                    item.installment_count === undefined ? (
+                      "-"
+                    ) : (
+                      item.installment_count + " Bulan"
+                    )}
+
+                  </td>
+                  <td>
+                    {item.monthly_installment === 0 ||
+                    item.monthly_installment === null ||
+                    item.monthly_installment === undefined ? (
+                      <span className="badge bg-success rounded-pill">Success</span>
+                    ) : (
+                      item.monthly_installment
+                    )}
                   </td>
                 </tr>
               ))}

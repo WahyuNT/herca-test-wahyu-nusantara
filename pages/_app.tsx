@@ -1,6 +1,6 @@
 import "@/styles/bootstrap.min.css";
 // import "@/styles/globals.css";
-// import "@/styles/custom.css";
+import "@/styles/custom.css";
 import type { AppProps } from "next/app";
 
 import Head from "next/head";

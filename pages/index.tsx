@@ -42,10 +42,10 @@ export default function Home() {
           </div>
         </div>
         <div className="d-flex justify-content-start flex-wrap">
-          <div className="col-lg-6 col-12 pe-lg-2">
+          <div className="col-lg-5 col-12 pe-lg-2">
             <KomisiComp />
           </div>
-          <div className="col-lg-6 col-12 ">
+          <div className="col-lg-7 col-12 ">
             <TransaksiComp />
           </div>
         </div>

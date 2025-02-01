@@ -22,7 +22,7 @@ export default function MarketingComp() {
     <>
     
         
-          <div className="card shadow-sm border-1 border mt-5 p-3">
+          <div className="card shadow-sm border-0 border mt-5 p-3">
               <h4 className="text-center fw-bold">Data Marketing</h4>
               <table className="table table-striped">
                 <thead className="bg-secondary text-white">
