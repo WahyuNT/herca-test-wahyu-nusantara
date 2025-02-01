@@ -24,18 +24,18 @@ export default async function handler(req, res) {
                             marketing_name: "$marketing_data.name",
                             month: { $month: { $dateFromString: { dateString: "$date" } } }
                         },
-                        Omzet: { $sum: "$total_balance" }
+                        omzet: { $sum: "$total_balance" }
                     }
                 },
                 {
                     $addFields: {
-                        Komisi: {
+                        komisi: {
                             $switch: {
                                 branches: [
-                                    { case: { $lte: ["$Omzet", 100000000] }, then: 0 },
-                                    { case: { $lte: ["$Omzet", 200000000] }, then: 2.5 },
-                                    { case: { $lte: ["$Omzet", 500000000] }, then: 5 },
-                                    { case: { $gt: ["$Omzet", 500000000] }, then: 10 }
+                                    { case: { $lte: ["$omzet", 100000000] }, then: 0 },
+                                    { case: { $lte: ["$omzet", 200000000] }, then: 2.5 },
+                                    { case: { $lte: ["$omzet", 500000000] }, then: 5 },
+                                    { case: { $gt: ["$omzet", 500000000] }, then: 10 }
                                 ],
                                 default: 0
                             }
@@ -44,7 +44,7 @@ export default async function handler(req, res) {
                 },
                 {
                     $addFields: {
-                        komisi_nasional: { $multiply: ["$Omzet", { $divide: ["$Komisi", 100] }] }
+                        komisi_nasional: { $multiply: ["$omzet", { $divide: ["$komisi", 100] }] }
                     }
                 },
                 {

@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const db = client.db("herca");
     switch (req.method) {
         case "GET":
-            const allPosts = await db.collection("penjualan").find({}).sort({ "id": 1 }).toArray();
+            const allPosts = await db.collection("penjualan").find({}).sort({ "_id": 1 }).toArray();
             res.json({ status: 200, data: allPosts });
             break;
     }

@@ -2,49 +2,13 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
+import MarketingComp from "@/components/MarketingComp";
+import KomisiComp from "@/components/KomisiComp";
+import TransaksiComp from "@/components/TransaksiComp";
+import TunaiComp from "@/components/TunaiComp";
+import KreditComp from "@/components/KreditComp";
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
-  const [marketing, setMarketing] = useState([]);
-  const [perhitungan, setPerhitungan] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`/api/penjualan`);
-        setPosts(response.data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const responseMarketing = await axios.get(`/api/marketing`);
-        setMarketing(responseMarketing.data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const responsePerhitungan = await axios.get(`/api/perhitungan`);
-        setPerhitungan(responsePerhitungan.data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <>
       <Head>
@@ -66,144 +30,23 @@ export default function Home() {
       </nav>
 
       <div className="px-5 pt-5">
-        <div className="d-flex">
-          <div className="col-2 pe-3">
-            <div className="card mt-5 p-3">
-              <h4 className="text-center fw-bold">Data Marketing</h4>
-              <table className="table table-striped">
-                <thead className="bg-secondary text-white">
-                  <tr>
-                    <th>ID</th>
-                    <th>Nama</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {marketing.map((item: any) => (
-                    <tr>
-                      <td>{item.id}</td>
-                      <td>{item.name}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+        <div className="d-flex justify-content-start">
+          <div className="col-5 pe-1">
+            <TunaiComp />
+          </div>
+          <div className="col-5 ps-2">
+            <KreditComp />
+          </div>
+          <div className="col-lg-2 col-12 ps-lg-2">
+            <MarketingComp />
           </div>
         </div>
         <div className="d-flex justify-content-start flex-wrap">
-          <div className="col-6 pe-2">
-            <div className="card mt-5 p-3">
-              <h4 className="text-center fw-bold">Data Transaksi</h4>
-              {/* <div className="d-flex justify-content-end gap-2 mb-2">
-            <button className="btn btn-primary btn-sm">Pembayaran</button>
-            <Link href={`/marketing`}>
-              <button className="btn btn-info text-white btn-sm">
-                Marketing
-              </button>
-            </Link>
-          </div> */}
-              <div className="table-responsive">
-                <table className="table table-striped">
-                  <thead className="bg-secondary text-white">
-                    <tr>
-                      <th>ID</th>
-                      <th>
-                        Transaction <br /> Number
-                      </th>
-                      <th>
-                        Marketing <br /> ID
-                      </th>
-                      <th>Date</th>
-                      <th>Cargo Fee</th>
-                      <th>Total Balance</th>
-                      <th>Grand Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {posts.map((item: any) => (
-                      <tr>
-                        <td>{item.id}</td>
-                        <td>{item.transaction_number}</td>
-                        <td>{item.marketing_id}</td>
-                        <td>{item.date}</td>
-                        <td>
-                          {new Intl.NumberFormat("id-ID", {
-                            style: "currency",
-                            currency: "IDR",
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 0,
-                          }).format(item.cargo_fee)}
-                        </td>
-                        <td>
-                          {new Intl.NumberFormat("id-ID", {
-                            style: "currency",
-                            currency: "IDR",
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 0,
-                          }).format(item.total_balance)}
-                        </td>
-                        <td>
-                          {new Intl.NumberFormat("id-ID", {
-                            style: "currency",
-                            currency: "IDR",
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 0,
-                          }).format(item.grand_total)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          <div className="col-lg-6 col-12 pe-lg-2">
+            <KomisiComp />
           </div>
-          <div className="col-6 ps-2">
-            <div className="card mt-5 p-3">
-              <h4 className="text-center fw-bold">Data Komisi</h4>
-              {/* <div className="d-flex justify-content-end gap-2 mb-2">
-            <button className="btn btn-primary btn-sm">Pembayaran</button>
-            <Link href={`/marketing`}>
-              <button className="btn btn-info text-white btn-sm">
-                Marketing
-              </button>
-            </Link>
-          </div> */}
-              <div className="table-responsive">
-                <table className="table table-striped ">
-                  <thead className="bg-secondary text-white">
-                    <tr>
-                      <th>Marketing</th>
-                      <th>Bulan</th>
-                      <th>Omzet</th>
-                      <th>Komisi % </th>
-                      <th>Komisi Nominal</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {perhitungan.map((item: any) => (
-                      <tr>
-                        <td>{item._id.marketing_name}</td>
-
-                        <td>
-                          {new Date(0, item._id.month - 1).toLocaleString(
-                            "id-ID",
-                            { month: "long" }
-                          )}
-                        </td>
-                        <td>
-                          {new Intl.NumberFormat("id-ID").format(item.Omzet)}
-                        </td>
-                        <td>{item.Komisi}</td>
-                        <td>
-                          {new Intl.NumberFormat("id-ID").format(
-                            item.komisi_nasional
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          <div className="col-lg-6 col-12 ">
+            <TransaksiComp />
           </div>
         </div>
       </div>
