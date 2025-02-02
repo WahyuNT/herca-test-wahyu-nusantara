@@ -25,8 +25,6 @@ Proyek ini menggunakan file .env yang berisi konfigurasi berikut :
 
 `MONGODB_URI : mongodb+srv://herca:herca@cluster0.lhlezvs.mongodb.net/`
 
-
-
 ## 🔌API Reference 
 Collection Postman sudah tersedia di root proyek.
 
