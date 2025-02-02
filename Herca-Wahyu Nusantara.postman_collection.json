@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "c9366bf5-e59a-40f8-9a0d-10e44311e70f",
+		"name": "Herca-Wahyu Nusantara",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20332442"
+	},
+	"item": [
+		{
+			"name": "Marketing",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/marketing",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"marketing"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Penjualan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/penjualan",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"penjualan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Komisi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/komisi",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"komisi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pembayaran Tunai",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "transaction_number",
+							"value": "TSX",
+							"type": "text"
+						},
+						{
+							"key": "marketing_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "2025-02-01",
+							"type": "text"
+						},
+						{
+							"key": "cargo_fee",
+							"value": "500000",
+							"type": "text"
+						},
+						{
+							"key": "total_balance",
+							"value": "1000000",
+							"type": "text"
+						},
+						{
+							"key": "grand_total",
+							"value": "1500000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/pembayaran",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"pembayaran"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pembayaran Kredit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "transaction_number",
+							"value": "TSX212",
+							"type": "text"
+						},
+						{
+							"key": "marketing_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "2025-02-01",
+							"type": "text"
+						},
+						{
+							"key": "cargo_fee",
+							"value": "500000",
+							"type": "text"
+						},
+						{
+							"key": "total_balance",
+							"value": "1000000",
+							"type": "text"
+						},
+						{
+							"key": "grand_total",
+							"value": "1500000",
+							"type": "text"
+						},
+						{
+							"key": "installment_count",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "monthly_installment",
+							"value": "75000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/pembayaran",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"pembayaran"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:3000/api",
+			"type": "string"
+		}
+	]
+}
