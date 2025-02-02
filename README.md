@@ -1,18 +1,18 @@
 
 ## 🌍 Demo Website
-Proyek demo ini dapat diakses melalui https://herca-test.wahyunt.me/
+Proyek demo ini dapat diakses melalui bashs://herca-test.wahyunt.me/
 ## 🚀 Instalasi & Menjalankan Proyek
 1️⃣ Clone Repository
-```http
-git clone https://github.com/WahyuNT/herca-test-wahyu-nusantara.git
+```bash
+git clone bashs://github.com/WahyuNT/herca-test-wahyu-nusantara.git
 
 ```
 2️⃣ Instalasi Dependensi
-```http
+```bash
 npm install
 ```
 3️⃣ Menjalankan Server 
-```http
+```bash
 npm run dev
 ```
 
@@ -33,22 +33,22 @@ Collection Postman sudah tersedia di root proyek.
 Berikut adalah rinciannya.
 #### Get all Marketing
 
-```http
+```bash
   GET /api/marketing
 ```
 
 #### Get item
 
-```http
+```bash
   GET /api/penjualan
 ```
 
 #### Get Komisi
-```http
+```bash
   GET /api/komisi
 ```
 #### POST Pembayaran Tunai
-```http
+```bash
   POST /api/pembayaran
 ```
 | Parameter | Type     |
@@ -61,7 +61,7 @@ Berikut adalah rinciannya.
 | `grand_total`| `int` |
 
 #### POST Pembayaran Kredit
-```http
+```bash
   POST /api/pembayaran
 ```
 | Parameter | Type     |
