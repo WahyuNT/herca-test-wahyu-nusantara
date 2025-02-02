@@ -1,10 +1,10 @@
 
 ## 🌍 Demo Website
-Proyek demo ini dapat diakses melalui bashs://herca-test.wahyunt.me/
+Proyek demo ini dapat diakses melalui https://herca-test.wahyunt.me/
 ## 🚀 Instalasi & Menjalankan Proyek
 1️⃣ Clone Repository
 ```bash
-git clone bashs://github.com/WahyuNT/herca-test-wahyu-nusantara.git
+git clone https://github.com/WahyuNT/herca-test-wahyu-nusantara.git
 
 ```
 2️⃣ Instalasi Dependensi

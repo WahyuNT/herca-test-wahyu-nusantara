@@ -92,7 +92,7 @@ export default function TransaksiComp() {
                     item.monthly_installment === null ||
                     item.monthly_installment === undefined ? (
                       <span className="badge bg-success rounded-pill">
-                        Success
+                        Lunas
                       </span>
                     ) : (
                       item.monthly_installment
