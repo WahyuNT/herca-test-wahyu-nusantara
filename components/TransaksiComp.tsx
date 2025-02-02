@@ -3,7 +3,18 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export default function TransaksiComp() {
-  const [posts, setPosts] = useState([]);
+  interface Post {
+    transaction_number: string;
+    marketing_id: string;
+    date: string;
+    cargo_fee: number;
+    total_balance: number;
+    grand_total: number;
+    installment_count: number | null;
+    monthly_installment: number | null;
+  }
+
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
