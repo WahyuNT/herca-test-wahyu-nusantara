@@ -70,21 +70,19 @@ export default function TransaksiComp() {
                     }).format(item.grand_total)}
                   </td>
                   <td className="text-center">
-
-                  {item.installment_count === 0 ||
+                    {item.installment_count === 0 ||
                     item.installment_count === null ||
-                    item.installment_count === undefined ? (
-                      "-"
-                    ) : (
-                      item.installment_count + " Bulan"
-                    )}
-
+                    item.installment_count === undefined
+                      ? "-"
+                      : item.installment_count + " Bulan"}
                   </td>
                   <td>
                     {item.monthly_installment === 0 ||
                     item.monthly_installment === null ||
                     item.monthly_installment === undefined ? (
-                      <span className="badge bg-success rounded-pill">Success</span>
+                      <span className="badge bg-success rounded-pill">
+                        Success
+                      </span>
                     ) : (
                       item.monthly_installment
                     )}
@@ -95,7 +93,6 @@ export default function TransaksiComp() {
           </table>
         </div>
       </div>
-      ;
     </>
   );
 }

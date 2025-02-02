@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 export default function TunaiComp() {
   const [marketing, setMarketing] = useState([]);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -72,7 +71,6 @@ export default function TunaiComp() {
     }
   };
 
-
   return (
     <>
       <div
@@ -85,7 +83,7 @@ export default function TunaiComp() {
         <div className="div">
           <form onSubmit={handleSubmit}>
             <div className="d-flex justify-content-start flex-wrap align-items-end">
-              <div className="col-4 mb-3 pe-2">
+              <div className="col-lg-4 col-6 mb-3 pe-lg-2 pe-1">
                 <label htmlFor="marketing_id" className="form-label">
                   Marketing
                 </label>
@@ -112,7 +110,7 @@ export default function TunaiComp() {
                 </select>
               </div>
 
-              <div className="col-4 mb-3 ps-2">
+              <div className="col-lg-4 col-6 mb-3 ps-lg-2 ps-1">
                 <label htmlFor="date" className="form-label">
                   Tanggal
                 </label>
@@ -127,7 +125,7 @@ export default function TunaiComp() {
                 />
               </div>
 
-              <div className="col-4 mb-3 ps-2">
+              <div className="col-lg-4 col-6 mb-3 ps-lg-2 pe-1">
                 <label htmlFor="cargo_fee" className="form-label">
                   Biaya Cargo
                 </label>
@@ -154,7 +152,7 @@ export default function TunaiComp() {
                 />
               </div>
 
-              <div className="col-4 mb-3 pe-2">
+              <div className="col-lg-4 col-6 mb-3 pe-lg-2 ps-1">
                 <label htmlFor="total_balance" className="form-label">
                   Saldo Total
                 </label>
@@ -180,7 +178,7 @@ export default function TunaiComp() {
                   required
                 />
               </div>
-              <div className="col-4 mb-3 ps-2">
+              <div className="col-lg-4 col-6 mb-3 ps-lg-2 pe-1">
                 <label htmlFor="grand_total" className="form-label">
                   Total Keseluruhan
                 </label>
@@ -198,7 +196,7 @@ export default function TunaiComp() {
                 />
               </div>
 
-              <div className="col-4 mb-3 ps-2">
+              <div className="col-lg-4 col-6 mb-3 ps-lg-2 ps-1">
                 <button type="submit" className="btn btn-primary">
                   Proses
                 </button>
@@ -207,7 +205,6 @@ export default function TunaiComp() {
           </form>
         </div>
       </div>
-      ;
     </>
   );
 }

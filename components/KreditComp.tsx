@@ -28,16 +28,18 @@ export default function KreditComp() {
     cargo_fee: 0,
     total_balance: 0,
     grand_total: 0,
-    installment_count: 0, // Jumlah cicilan
-    monthly_installment: 0, // Cicilan per bulan
+    installment_count: 0,
+    monthly_installment: 0,
   });
 
   useEffect(() => {
     setFormData((prevData) => {
-      const grandTotal = (prevData.cargo_fee || 0) + (prevData.total_balance || 0);
-      const monthlyInstallment = prevData.installment_count > 0
-        ? grandTotal / prevData.installment_count
-        : 0;
+      const grandTotal =
+        (prevData.cargo_fee || 0) + (prevData.total_balance || 0);
+      const monthlyInstallment =
+        prevData.installment_count > 0
+          ? grandTotal / prevData.installment_count
+          : 0;
       return {
         ...prevData,
         grand_total: grandTotal,
@@ -94,7 +96,7 @@ export default function KreditComp() {
         <div className="div">
           <form onSubmit={handleSubmit}>
             <div className="d-flex justify-content-start flex-wrap align-items-end">
-              <div className="col-4 mb-3 pe-2">
+              <div className="col-6 col-lg-4 mb-3 pe-lg-1 pe-1 ">
                 <label htmlFor="marketing_id" className="form-label">
                   Marketing
                 </label>
@@ -121,7 +123,7 @@ export default function KreditComp() {
                 </select>
               </div>
 
-              <div className="col-4 mb-3 ps-2">
+              <div className="col-6 col-lg-3 mb-3 pe-lg-1 pe-1 ">
                 <label htmlFor="date" className="form-label">
                   Tanggal
                 </label>
@@ -136,7 +138,7 @@ export default function KreditComp() {
                 />
               </div>
 
-              <div className="col-4 mb-3 ps-2">
+              <div className="col-6 col-lg-3 mb-3   pe-lg-1 pe-1">
                 <label htmlFor="cargo_fee" className="form-label">
                   Biaya Cargo
                 </label>
@@ -163,7 +165,23 @@ export default function KreditComp() {
                 />
               </div>
 
-              <div className="col-4 mb-3 pe-2">
+              <div className="col-6 col-lg-2 mb-3   pe-lg-1 pe-1">
+                <label htmlFor="installment_count" className="form-label">
+                  Angsuran
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="installment_count"
+                  name="installment_count"
+                  value={formData.installment_count}
+                  onChange={handleChange}
+                  required
+                  min="1"
+                />
+              </div>
+
+              <div className="col-6 col-lg-3 mb-3  ps-0">
                 <label htmlFor="total_balance" className="form-label">
                   Saldo Total
                 </label>
@@ -190,37 +208,23 @@ export default function KreditComp() {
                 />
               </div>
 
-              <div className="col-4 mb-3 ps-2">
-                <label htmlFor="installment_count" className="form-label">
-                  Jumlah Cicilan
-                </label>
-                <input
-                  type="number"
-                  className="form-control"
-                  id="installment_count"
-                  name="installment_count"
-                  value={formData.installment_count}
-                  onChange={handleChange}
-                  required
-                  min="1"
-                />
-              </div>
-
-              <div className="col-4 mb-3 ps-2">
+              <div className="col-6 col-lg-3  mb-3 pe-lg-1 pe-1  ps-1">
                 <label htmlFor="monthly_installment" className="form-label">
-                  Cicilan Per Bulan
+                  Cicilan <small style={{ fontSize: 10 }}>(Per Bulan)</small>
                 </label>
                 <input
                   type="text"
                   className="form-control"
                   id="monthly_installment"
                   name="monthly_installment"
-                  value={new Intl.NumberFormat("id-ID").format(formData.monthly_installment || 0)}
+                  value={new Intl.NumberFormat("id-ID").format(
+                    formData.monthly_installment || 0
+                  )}
                   disabled
                 />
               </div>
 
-              <div className="col-4 mb-3 ps-2">
+              <div className="col-6 col-lg-3 mb-3   pe-lg-1 pe-1">
                 <label htmlFor="grand_total" className="form-label">
                   Total Keseluruhan
                 </label>
@@ -237,7 +241,7 @@ export default function KreditComp() {
                 />
               </div>
 
-              <div className="col-4 mb-3 ps-2">
+              <div className="col-6 col-lg-2 mb-3 ">
                 <button type="submit" className="btn btn-primary">
                   Proses
                 </button>
